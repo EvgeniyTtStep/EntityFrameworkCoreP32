@@ -1,6 +1,36 @@
-﻿namespace EntityFrameworkCoreP32;
+﻿using Microsoft.EntityFrameworkCore;
 
-public class CarContext
+namespace EntityFrameworkCoreP32;
+
+public class CarContext : DbContext
 {
     
+    public DbSet<Toyota> Toyotas { get; set; }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.LogTo(Console.WriteLine);
+        optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=CarP32;Trusted_Connection=True;TrustServerCertificate=True;");
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Toyota>(entity =>
+            {
+                entity.ToTable("Toyotas");
+                //entity.HasKey(e => e.Id);
+                
+                 entity.Property(e => e.Id)
+                     .ValueGeneratedOnAdd()
+                     .HasColumnName("IdToyota");
+                
+                
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnName("ToyotaName");
+                
+            }
+        );
+    }
 }
