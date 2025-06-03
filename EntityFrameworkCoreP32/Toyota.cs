@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EntityFrameworkCoreP32;
 
@@ -22,4 +23,6 @@ public class Toyota
     public DateTime? ReleaseDate { get; set; }
     
     public Engine? Engine { get; set; }
+    
+    public List<Driver> Drivers { get; set;}
 }

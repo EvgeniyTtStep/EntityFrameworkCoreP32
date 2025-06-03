@@ -7,6 +7,8 @@ public class CarContext : DbContext
     
     public DbSet<Toyota> Toyotas { get; set; }
     public DbSet<Engine> Engines { get; set; }
+    public DbSet<Driver> Drivers { get; set; }
+    
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
