@@ -15,5 +15,5 @@ public class Engine
     [MaxLength(250)]
     public string Name { get; set; }
     
-    List<Toyota> Toyotas { get; set; }
+    HashSet<Toyota> Toyotas { get; set; }
 }
